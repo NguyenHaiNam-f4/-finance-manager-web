@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý tài chính cá nhân</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Quản lý tài chính cá nhân</h1>
+      <p>Theo dõi thu chi hằng ngày, xem số dư và kiểm soát ngân sách.</p>
+    </header>
+
+    <section class="summary-grid">
+      <article class="card">
+        <h2>Số dư</h2>
+        <p id="balance" class="money neutral">0 đ</p>
+      </article>
+      <article class="card">
+        <h2>Tổng thu</h2>
+        <p id="income" class="money income">0 đ</p>
+      </article>
+      <article class="card">
+        <h2>Tổng chi</h2>
+        <p id="expense" class="money expense">0 đ</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2 id="form-title">Thêm giao dịch</h2>
+      <form id="transaction-form" class="form-grid">
+        <label>
+          Mô tả
+          <input id="description" type="text" placeholder="Ví dụ: Lương tháng 4" required />
+        </label>
+        <label>
+          Số tiền (đ)
+          <input id="amount" type="number" min="0" step="1000" required />
+        </label>
+        <label>
+          Loại
+          <select id="type" required>
+            <option value="income">Thu</option>
+            <option value="expense">Chi</option>
+          </select>
+        </label>
+        <label>
+          Danh mục
+          <input id="category" type="text" placeholder="Ăn uống, đi lại, đầu tư..." required />
+        </label>
+        <label>
+          Ngày
+          <input id="date" type="date" required />
+        </label>
+        <div class="form-actions">
+          <button id="submit-btn" type="submit" class="btn-primary">Lưu giao dịch</button>
+          <button id="cancel-edit-btn" type="button" class="btn-secondary hidden">Hủy sửa</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Lịch sử giao dịch</h2>
+        <div class="filters">
+          <label class="month-filter">
+            Lọc theo tháng
+            <input type="month" id="month-filter" />
+          </label>
+          <label class="search-filter">
+            Tìm kiếm
+            <input type="text" id="search-filter" placeholder="Mô tả hoặc danh mục..." />
+          </label>
+          <button id="export-csv-btn" type="button" class="btn-secondary">Xuất CSV</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Ngày</th>
+              <th>Mô tả</th>
+              <th>Danh mục</th>
+              <th>Loại</th>
+              <th>Số tiền</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="transaction-list"></tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty-state">Chưa có giao dịch nào.</p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
